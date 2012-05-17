@@ -1,0 +1,26 @@
+	
+
+    
+      <div class="row">
+        
+        <div class="span9">
+          	<ul class="thumbnails">
+          	  <% (1..20).each do %>
+          	  	<li class="span2">
+          	  	  <div class="thumbnail">
+          	  	  	<a href="#">
+          	  	    <img src="http://placehold.it/160x200" alt="">
+          	  	    </a>
+          	  	    <h5>cartoon name</h5>
+          	  	    <div style='height: 20px'><span style='float: left'>tags:</span> <ul  class="unstyled" style='float: left'><li><%= link_to "tag", '#' %></li></ul></div>
+          	  	  </div>
+          	  	</li>
+          	  <% end -%>
+          	  
+          	</ul>
+        </div>
+        <%= render :partial => 'share/sidebar' %>
+
+     
+
+   

@@ -1,0 +1,33 @@
+<%= form_for(@comic) do |f| %>
+  <% if @comic.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@comic.errors.count, "error") %> prohibited this comic from being saved:</h2>
+
+      <ul>
+      <% @comic.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :cover %><br />
+    <%= f.text_field :cover %>
+  </div>
+  <div class="field">
+    <%= f.label :pages %><br />
+    <%= f.text_field :pages %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

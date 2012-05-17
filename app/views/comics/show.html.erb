@@ -1,0 +1,51 @@
+<ul class="breadcrumb">
+  <li>
+    <a href="#">index</a> <span class="divider">/</span>
+  </li>
+  <li class="active">comic name</li>
+</ul>
+<div class='row-fluid'>
+
+<div class='span3'>
+	<div class='well sidebar-nav'>
+		<ul class='nav nav-list'>
+			<% (1..100).each do |i| %>
+
+			<li>
+				<a href="">
+					<%= i %> section
+				</a>
+			</li>
+			<% end -%>
+		</ul>
+</div>
+
+</div>
+
+
+<div class='span9'>
+	<div style='padding: 15px 0'>
+	<h1>海贼王</h1>
+	
+	<p>
+	<img src="http://placehold.it/300x260" alt="" style='float:left'>   路飞所生长的小村庄里曾经是一群以「红发香克斯」为首的海盗们的暂居地，而幼年路飞一直希望可以成为他们的一员，可在一次意外的情况下，他吃了一种叫做「橡皮果实」的恶魔果实变成了橡胶人。恶魔果实给予了他这样奇特的本领，但是吃了恶魔果实的人是再也没有能力游泳的…这样还能成为海盗吗？「没有关系，我只要不掉到海里去就行了…」天性乐观的路飞并没有放弃他的海贼之路，他和香克斯约好，总有一天他会带着他的伙伴们成为海贼王。（听上去好像很有道理，可是……我真的给这个单细胞的家伙打败了）。
+名声，财富，权力，曾经拥有世界上一切的“海贼王”哥尔·D·罗杰，在临死前留下了一句话，让全世界的人们，趋之若鹜奔向大海：“想要我的财宝吗？想要的话可以给你，去找吧！我把一切都放在那里了！”于是所有的人们开始起航，驶入伟大航路，世界迎来了『大海贼时代』。
+蒙其.D.路飞——一个以成为海贼王为目标的男孩，为了兑现与救了他命的香克斯的承诺，戴着香克斯留给他的草帽只身一人向着大海出发了！可路飞却因小时候误食了恶魔果实而无法游泳了，就是在这种情况下，路飞展开了他的冒险……一路上他先后结识了一位又一位可靠的伙伴，打倒了一个又一个强大的敌人，经历一次又一次殊死的恶斗，路飞也离那财宝“ONE PIECE”越来越近了…… </p>
+	</div>
+	<div style='clear:both;margin:20px 0'>
+		<h3><%= link_to "> photos", '#' %></h3>
+		<ul class="thumbnails">
+		  <% (1..20).each do %>
+		  	<li>
+		  	  <div class="thumbnail">
+		  	  	<a href="#">
+		  	    <img src="http://placehold.it/160x200" alt="">
+		  	    </a>
+		  	  </div>
+		  	</li>
+		  <% end -%>
+		  
+		</ul>
+	</div>
+</div>
+</div>
