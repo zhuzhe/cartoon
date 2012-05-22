@@ -10,15 +10,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120517081311) do
+ActiveRecord::Schema.define(:version => 20120521022018) do
 
   create_table "comics", :force => true do |t|
     t.string   "name"
     t.string   "description"
     t.string   "cover"
-    t.string   "pages"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "sections"
+    t.string   "url"
   end
 
   create_table "pages", :force => true do |t|
