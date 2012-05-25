@@ -1,0 +1,23 @@
+<h1>Listing bookcases</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @bookcases.each do |bookcase| %>
+  <tr>
+    <td><%= bookcase.user_id %></td>
+    <td><%= link_to 'Show', bookcase %></td>
+    <td><%= link_to 'Edit', edit_bookcase_path(bookcase) %></td>
+    <td><%= link_to 'Destroy', bookcase, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Bookcase', new_bookcase_path %>

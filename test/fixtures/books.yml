@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  bookcase_id: 1
+  comic_id: 1
+
+two:
+  bookcase_id: 1
+  comic_id: 1
