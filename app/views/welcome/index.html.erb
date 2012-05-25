@@ -6,6 +6,7 @@
         <div class="span9">
           <div class='well'>
             <h2><%= link_to '> 最近更新' %></h2>
+            <hr style='border-color: silver'/>
               <ul class="thumbnails" style='padding:15px'>
                 <% @comics.each do |comic| %>
                   <li class="span2">
@@ -26,6 +27,7 @@
 
           <div class='well'>
             <h2><%= link_to '> 热门' %></h2>
+            <hr style='border-color: silver'/>
               <ul class="thumbnails" style='padding:15px'>
                 <% @comics.each do |comic| %>
                   <li class="span2">
