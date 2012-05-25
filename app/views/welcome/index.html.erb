@@ -4,20 +4,46 @@
       <div class="row">
         
         <div class="span9">
-          	<ul class="thumbnails">
-          	  <% (1..20).each do %>
-          	  	<li class="span2">
-          	  	  <div class="thumbnail">
-          	  	  	<a href="#">
-          	  	    <img src="http://placehold.it/160x200" alt="">
-          	  	    </a>
-          	  	    <h5>cartoon name</h5>
-          	  	    <div style='height: 20px'><span style='float: left'>tags:</span> <ul  class="unstyled" style='float: left'><li><%= link_to "tag", '#' %></li></ul></div>
-          	  	  </div>
-          	  	</li>
-          	  <% end -%>
-          	  
-          	</ul>
+          <div class='well'>
+            <h2><%= link_to '> 最近更新' %></h2>
+              <ul class="thumbnails" style='padding:15px'>
+                <% @comics.each do |comic| %>
+                  <li class="span2">
+                    <div class="thumbnail">
+                      <%= link_to comic do %>
+                        <%= image_tag comic.cover %>
+                      <!-- <img src="http://placehold.it/160x200" alt=""> -->
+                      <% end -%>
+                      </a>
+                      <h5><%= comic.name %></h5>
+                      <div style='height: 20px'><span style='float: left'>标签：</span> <ul  class="unstyled" style='float: left'><li><%= link_to "热血", '#' %></li></ul></div>
+                    </div>
+                  </li>
+                <% end -%>
+                
+              </ul>
+          </div>
+
+          <div class='well'>
+            <h2><%= link_to '> 热门' %></h2>
+              <ul class="thumbnails" style='padding:15px'>
+                <% @comics.each do |comic| %>
+                  <li class="span2">
+                    <div class="thumbnail">
+                      <%= link_to comic do %>
+                        <%= image_tag comic.cover %>
+                      <!-- <img src="http://placehold.it/160x200" alt=""> -->
+                      <% end -%>
+                      </a>
+                      <h5><%= comic.name %></h5>
+                      <div style='height: 20px'><span style='float: left'>标签：</span> <ul  class="unstyled" style='float: left'><li><%= link_to "热血", '#' %></li></ul></div>
+                    </div>
+                  </li>
+                <% end -%>
+                
+              </ul>
+          </div>
+          	
         </div>
         <%= render :partial => 'share/sidebar' %>
 

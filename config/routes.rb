@@ -3,7 +3,11 @@ Cartoon::Application.routes.draw do
 
   resources :pages
 
-  resources :comics
+  resources :comics do
+    collection do
+      post 'search'
+    end
+  end
 
   get "welcome/index"
 

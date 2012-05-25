@@ -13,12 +13,7 @@ class ComicsController < ApplicationController
   # GET /comics/1
   # GET /comics/1.json
   def show
-    # @comic = Comic.find(params[:id])
-
-    # respond_to do |format|
-    #   format.html # show.html.erb
-    #   format.json { render :json => @comic }
-    # end
+    @comic = Comic.find(params[:id])
   end
 
   # GET /comics/new
@@ -79,5 +74,9 @@ class ComicsController < ApplicationController
       format.html { redirect_to comics_url }
       format.json { head :no_content }
     end
+  end
+
+  def search
+    @comics = Comic.where("name like ?", "%#{params[:key]}%")
   end
 end

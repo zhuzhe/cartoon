@@ -1,15 +1,15 @@
   <div class="span3" >
     <div class="well sidebar-nav"  style='padding: 10px'>
     	<div>
-    		<form class="form-search">
+            <%= form_tag search_comics_path, :class => 'form-search' do %>
     		  <input type="text" class="input-medium search-query">
-    		  <button type="submit" class="btn">Search</button>
-    		</form>
+    		  <button type="submit" class="btn">搜索</button>
+              <% end -%>
     	</div>
     	<div>
-    		<span style='float: left'>tags:  </span>
+    		<span style='float: left'>标签： </span>
     		<ul class='unstyled'>
-    			<li style='margin: 0 5px'><%= link_to "tag", '#' %> </li>
+    			<li style='margin: 0 5px'><%= link_to "喜剧", '#' %> </li>
     		</ul>
     	</div>
     </div><!--/.well -->
