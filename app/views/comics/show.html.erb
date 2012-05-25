@@ -12,9 +12,7 @@
 			<% @comic.sections.each do |s| %>
 
 			<li>
-				<a href="">
-					<%= s.name %> 
-				</a>
+				<%= link_to s.name, page_path(1) %>
 			</li>
 			<% end -%>
 		</ul>

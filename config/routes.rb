@@ -1,4 +1,11 @@
 Cartoon::Application.routes.draw do
+
+  resources :books
+
+  resources :bookcases
+
+  resources :users
+
   resources :sections
 
   resources :pages

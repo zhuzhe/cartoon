@@ -10,7 +10,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120523064857) do
+ActiveRecord::Schema.define(:version => 20120525081252) do
+
+  create_table "bookcases", :force => true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "comics", :force => true do |t|
     t.string   "name"
@@ -27,6 +33,8 @@ ActiveRecord::Schema.define(:version => 20120523064857) do
     t.integer  "comic_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "section_id"
+    t.integer  "order"
   end
 
   create_table "sections", :force => true do |t|
@@ -35,6 +43,15 @@ ActiveRecord::Schema.define(:version => 20120523064857) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "url"
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "name"
+    t.string   "password"
+    t.string   "sex"
+    t.string   "email"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end
