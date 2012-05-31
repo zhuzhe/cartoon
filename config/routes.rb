@@ -1,5 +1,24 @@
 Cartoon::Application.routes.draw do
 
+  resources :tags
+
+  namespace :admin do
+    resources :comics do
+
+      collection do
+        get :enable_list
+        get :disable_list
+      end
+
+      member do
+        post :enable
+        post :disable 
+      end
+    end
+  end
+
+  
+
   resources :books
 
   resources :bookcases

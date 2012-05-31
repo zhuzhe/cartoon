@@ -1,0 +1,26 @@
+<ul class="nav nav-pills">
+  <li>
+    <a href="/admin/comics/enable_list">enable</a>
+  </li>
+  <li><a href="/admin/comics/disable_list">disable</a></li>
+  <li class='active'><a href="/admin/comics">all</a></li>
+</ul>
+
+<div class='well'>
+	count: <%= Comic.all.size %>
+</div>
+
+<div class='row'>
+
+	
+
+<div class='span10'>
+
+	
+
+	<%= render :partial => 'comics' %>
+	     
+
+</div>
+
+</div>

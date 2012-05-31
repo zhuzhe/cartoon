@@ -13,12 +13,22 @@ class SectionsController < ApplicationController
   # GET /sections/1
   # GET /sections/1.json
   def show
-    # @section = Section.find(params[:id])
+    @section = Section.find(params[:id])
+    params[:page_id].blank? ? @page = @section.pages.first : @page = Page.find(params[:page_id]) 
+    case params[:tag]
+      when 'next' : @page = @page.next
+      when 'prev' : @page = @page.prev
+    end
 
-    # respond_to do |format|
-    #   format.html # show.html.erb
-    #   format.json { render :json => @section }
-    # end
+    if params[:tag] == 'next' && @page.nil?
+      if @section.next
+         redirect_to comic_path(@section.next)
+        else
+         redirect_to comic_path(@section.comic) 
+      end
+      
+    end
+
   end
 
   # GET /sections/new

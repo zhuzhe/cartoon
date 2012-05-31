@@ -1,13 +1,26 @@
+<%= content_for :head do %>
+<% end -%>
+
 <ul class="breadcrumb">
   <li>
-    <a href="#">index</a> <span class="divider">/</span>
+    <a href="/">首页</a> <span class="divider">/</span>
   </li>
   <li>
-    <a href="#">comic name</a> <span class="divider">/</span>
+  	<%= link_to @section.comic.name, @section.comic %><span class="divider">/</span>
   </li>
-  <li class="active">1</li>
+  <li class="active">
+  	<%= link_to @section.name, @section %>
+  </li>
 </ul>
 
-<div class='container'>
-	<img src="http://placehold.it/960x1000" alt="">
+
+<%#= render :partial => 'page_nav' %>
+<div class='row'>
+	<div class='span8 offset2 well'>
+		<%= link_to section_path(:id => @section, :page_id => @page.id, :tag => 'next'), :class => 'next' do %>
+			<%= image_tag @page.image_path %>
+		<% end -%>
+	</div>
 </div>
+
+<%#= render :partial => 'page_nav' %>

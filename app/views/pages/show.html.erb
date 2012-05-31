@@ -1,3 +1,6 @@
+<%= content_for :head do %>
+<% end -%>
+
 <ul class="breadcrumb">
   <li>
     <a href="/">首页</a> <span class="divider">/</span>
@@ -10,8 +13,32 @@
   </li>
 </ul>
 
+
+<div style='padding: 15px 100px'>
+  <ul class="nav nav-pills">
+    <li class="active">
+      <a href="#"  style='width:75px'><</a>
+    </li>
+
+    <li class="active">
+      <a href="#" style='float: right;width: 75px;text-align:right'>></a>
+    </li>
+  </ul>
+</div>
 <div class='row'>
 	<div class='span8'>
-		<%= image_tag 'http://placehold.it/800x1000'%>
+    <a href="#" class='next' id="<%= @page.id %>"><%= image_tag @section.pages.first.image_path %></a>
 	</div>
+</div>
+
+<div style='padding: 15px 100px'>
+  <ul class="nav nav-pills">
+    <li class="active">
+      <a href="#"  style='width:75px'><</a>
+    </li>
+
+    <li class="active">
+      <a href="#" style='float: right;width: 75px;text-align:right'>></a>
+    </li>
+  </ul>
 </div>

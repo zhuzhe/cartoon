@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120525081252) do
+ActiveRecord::Schema.define(:version => 20120531090543) do
 
   create_table "bookcases", :force => true do |t|
     t.integer  "user_id"
@@ -18,31 +18,48 @@ ActiveRecord::Schema.define(:version => 20120525081252) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "books", :force => true do |t|
+    t.integer  "bookcase_id"
+    t.integer  "comic_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "comics", :force => true do |t|
     t.string   "name"
     t.string   "description"
     t.string   "cover"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
     t.string   "sections"
     t.string   "url"
+    t.integer  "hot",         :default => 0
+    t.integer  "status",      :default => 0
   end
 
   create_table "pages", :force => true do |t|
     t.string   "url"
     t.integer  "comic_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
     t.integer  "section_id"
     t.integer  "order"
+    t.integer  "sequence",   :default => 0
   end
 
   create_table "sections", :force => true do |t|
     t.string   "name"
     t.integer  "comic_id"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.string   "url"
+    t.integer  "sequence",   :default => 0
+  end
+
+  create_table "tags", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.string   "url"
   end
 
   create_table "users", :force => true do |t|

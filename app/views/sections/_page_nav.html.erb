@@ -1,0 +1,17 @@
+<div class='row'>
+<div class='span4 offset4' style='padding: 15px'>
+  <ul class="nav nav-pills">
+    <li class="active">
+    	<% if @page.sequence == 1 %>
+    	<%= link_to '<', '#', :style =>'width:75px'%>
+    	<% else %>
+    	<%= link_to '<', section_path(:id => @section, :page_id => @page.id, :tag => 'prev'), :style =>'width:75px'%>
+    	<% end -%>
+    </li>
+
+    <li class="active">
+    	<%= link_to '>', section_path(:id => @section, :page_id => @page.id, :tag => 'next'), :style =>'width:75px;text-align:right'%>
+    </li>
+  </ul>
+</div>
+</div>
