@@ -6,6 +6,7 @@ Cartoon::Application.routes.draw do
     resources :comics do
 
       collection do
+        post :update_all_sections
         get :enable_list
         get :disable_list
       end

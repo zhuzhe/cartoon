@@ -29,17 +29,9 @@ module Spider
 
 		def crawl_sections_index
 			Comic.enable.find_each do |comic|
-				puts "#{comic.url} --->"
-				comic_home = get_page(comic.url)
-				comic_home.search('#subBookList li a').reverse.each_with_index do |a, index|
-					url = "#{ROOT}#{a['href']}"
-					next if Section.find_by_url(url)
-					sec = Section.create(:name => a.text, :url => url, :comic => comic, :sequence => index + 1)
-					puts "   #{sec.name} --- #{sec.url}" 
-				end
+				refresh_comic_section comic
 				sleep 2
 			end
-			
 		end
 
 		def crawl_pages comic, prefix, suffix
@@ -64,6 +56,37 @@ module Spider
 			end
 		end
 
+		def analysis_section_page section
+			puts "begin update #{section.comic.name}:#{section.name}:#{section.id} --->"
+			s_page = get_page(section.url)
+
+			s_page.content.match(/setting.chapterInfo=(\{.*\})/)
+			unless $1.nil?
+				info = JSON.parse($1)
+				info['images'].each_with_index do |suffix, index|
+					puts image = "http://t6.mangafiles.com/Files/Images/#{info['bookId']}/#{info['chapterId']}/#{suffix}"
+					next if Page.find_by_url(image)
+					Page.create(:section => section, :url => image, :sequence => (index + 1))
+				end
+			end
+			
+			s_page.content.match(/,'(\w{3}\|.*)'\.split/)
+			unless $1.nil?
+				info = $1.split('|')
+				suffix = info.shift
+				images = []
+				info.each do |item|
+					images << item if item.match('_')
+				end
+				images.sort!.each_with_index do |image, index|
+				   puts url ="http://t6.mangafiles.com/Files/Images/#{section.comic.url.match(/\d+/).to_s}/#{section.url.match(/_(\d+)/).to_s.gsub('_', '')}/#{image}.#{suffix}"
+				   next if Page.find_by_url(url)
+				   Page.create(:section => section, :sequence => (index + 1), :url => url)
+				end
+			end	
+
+		end
+
 		def analysis_pages_info
 
 			Comic.enable.find_each do |comic|
@@ -78,7 +101,7 @@ module Spider
 					info['images'].each_with_index do |suffix, index|
 						puts image = "http://t6.mangafiles.com/Files/Images/#{info['bookId']}/#{info['chapterId']}/#{suffix}"
 						next if Page.find_by_url(image)
-						Page.create(:section => section, :url => image, :order => (index + 1))
+						Page.create(:section => section, :url => image, :sequence => (index + 1))
 						
 					end
 	
@@ -108,7 +131,7 @@ module Spider
 					images.sort!.each_with_index do |image, index|
 					   puts url ="http://t6.mangafiles.com/Files/Images/#{section.comic.url.match(/\d+/).to_s}/#{section.url.match(/_(\d+)/).to_s.gsub('_', '')}/#{image}.#{suffix}"
 					   next if Page.find_by_url(url)
-					   Page.create(:section => section, :order => index, :url => url)
+					   Page.create(:section => section, :sequence => index + 1, :url => url)
 					end
 	
 					rescue Exception => e
@@ -173,6 +196,54 @@ module Spider
 					section.save
 					puts "#{section.id}  :  #{section.sequence}"
 				end
+			end
+		end
+
+		def refresh_comic_section comic
+			puts "begin update #{comic.name}:#{comic.id} sections  --->"
+			comic_home = get_page(comic.url)
+			comic_home.search('#subBookList li a').reverse.each_with_index do |a, index|
+				url = "#{ROOT}#{a['href']}"
+				next if Section.find_by_url(url)
+				sec = Section.create(:name => a.text, :url => url, :comic => comic, :sequence => index + 1)
+				puts "   #{sec.name} --- #{sec.url}" 
+			end
+		end
+
+		def download_section_page section
+			section.pages.each do |page|
+				puts "download page:#{page.id} ---->"
+				begin
+					if File.exist? page.path
+						puts "page:#{page.id} already exist !"
+						next 
+					end
+				rescue Exception => e
+					puts e
+					next
+				end
+				
+				puts "begin downloading #{section.comic.name}:#{section.name}:pages[#{page.id}] --->"
+				begin
+				open(page.url, {"Referer" => page.section.url}) do |f|
+					File.open(page.path, 'w') do |new_file|
+						new_file.write(f.read)
+					end
+					MiniMagick::Image.open(page.path).write page.path
+					puts "pages:#{page.id} already downloaded"
+				end
+				rescue Exception => e
+					next
+				end
+				sleep 3
+			end
+		end
+
+		def update_comic comic
+			refresh_comic_section comic
+			Section.where("comic_id = #{comic.id} AND updated_at > ?", "#{(Time.now - 2.day).to_s(:db)}").each do |section|
+				analysis_section_page section
+				download_section_page section
 			end
 		end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120531090543) do
+ActiveRecord::Schema.define(:version => 20120601072724) do
 
   create_table "bookcases", :force => true do |t|
     t.integer  "user_id"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20120531090543) do
     t.string   "url"
     t.integer  "hot",         :default => 0
     t.integer  "status",      :default => 0
+    t.integer  "nature",      :default => 0
   end
 
   create_table "pages", :force => true do |t|

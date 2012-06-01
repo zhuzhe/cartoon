@@ -42,6 +42,11 @@ class Admin::ComicsController < ApplicationController
     redirect_to :back
   end
 
+  def update_all_sections
+    Comic.update_all_sections
+    redirect_to :back
+  end
+
   private
 
   def find_model

@@ -12,11 +12,11 @@ class Page < ActiveRecord::Base
 		Dir.mkdir(root)  unless File.exist?(root)
 		Dir.mkdir(comic_dir)  unless File.exist?(comic_dir)
 		Dir.mkdir(section_dir)  unless File.exist?(section_dir)
-		"#{section_dir}/#{self.order}.jpg"
+		"#{section_dir}/#{self.sequence}.jpg"
 	end
 
 	def image_path
-		"/cp/#{section.comic.id}/#{section.id}/#{order}.jpg"
+		"/cp/#{section.comic.id}/#{section.id}/#{sequence}.jpg"
 	end
 
 	def next

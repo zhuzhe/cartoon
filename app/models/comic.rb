@@ -1,3 +1,5 @@
+require File.expand_path("../../../lib/spider/spider.rb", __FILE__)
+
 class Comic < ActiveRecord::Base
 	has_many :sections
 
@@ -5,6 +7,8 @@ class Comic < ActiveRecord::Base
 	scope :disable, lambda { where("status = 0") }
 	scope :hot, lambda { where("status = 1 AND hot >= 8") }
 	scope :latest, lambda { where("status = 1").order("updated_at DESC") }
+	scope :enable_end, lambda { where("status = 1 AND nature = 1")}
+	scope :enable_continue, lambda { where("status = 1 AND nature = 0")}
 
 	def enable?
 		status == 1 ? true : false
@@ -19,10 +23,33 @@ class Comic < ActiveRecord::Base
 	end
 
 	def update_section_list
-		`echo ok`
+		Thread.new {
+			Spider::Imanhua.new.update_comic(self)
+		}
 	end
 
-	def self.get_by_sid sid
-		where("url like ?", "%/#{sid}/%").limit(1).first
+	def nature_explain
+		case nature
+		when 1 : '已完结'
+		when 0 : '未完结'
+		end
+	end
+
+	
+
+	class << self
+
+		def get_by_sid sid
+			where("url like ?", "%/#{sid}/%").limit(1).first
+		end
+
+		def update_all_sections
+			enable_continue.each do |comic|
+				Thread.new {
+					Spider::Imanhua.new.update_comic comic
+				}	
+			end
+		end
+
 	end
 end

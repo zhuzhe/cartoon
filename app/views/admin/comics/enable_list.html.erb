@@ -8,6 +8,9 @@
 
 <div class='well'>
 	count: <%= Comic.enable.size %>
+	<%= form_tag  update_all_sections_admin_comics_path do |f| %>
+		<button class='btn'>更新已启用的漫画</button>
+	<% end -%>
 </div>
 
 <div class='row'>
