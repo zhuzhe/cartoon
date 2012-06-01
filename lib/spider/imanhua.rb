@@ -29,6 +29,7 @@ module Spider
 
 		def crawl_sections_index
 			Comic.enable.find_each do |comic|
+				puts comic.url
 				comic_home = get_page(comic.url)
 				comic_home.search('#subBookList li a').reverse.each_with_index do |a, index|
 					url = "#{ROOT}#{a['href']}"
