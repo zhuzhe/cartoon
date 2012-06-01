@@ -31,7 +31,7 @@ module Spider
 			Comic.enable.find_each do |comic|
 				puts comic.url
 				comic_home = get_page(comic.url)
-				puts comic_home.content
+				puts comic_home
 				comic_home.search('#subBookList li a').reverse.each_with_index do |a, index|
 					url = "#{ROOT}#{a['href']}"
 					next if Section.find_by_url(url)
@@ -96,7 +96,7 @@ module Spider
 				comic.sections.find_each do |section|
 					puts section.url
 					begin
-						s_page = get_page(section.url)
+					s_page = get_page(section.url)
 					
 					s_page.content.match(/,'(\w{3}\|.*)'\.split/)
 					next if $1.nil?
