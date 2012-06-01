@@ -6,7 +6,7 @@ class Page < ActiveRecord::Base
 	end
 
 	def path
-		root = '/home/belen/Pictures/comics'
+		root = '/home/www/images/comics'
 		comic_dir = "#{root}/#{self.section.comic.id}"
 		section_dir = "#{comic_dir}/#{section.id}"
 		Dir.mkdir(root)  unless File.exist?(root)
@@ -16,7 +16,7 @@ class Page < ActiveRecord::Base
 	end
 
 	def image_path
-		"cp/#{section.comic.id}/#{section.id}/#{order}.jpg"
+		"/cp/#{section.comic.id}/#{section.id}/#{order}.jpg"
 	end
 
 	def next

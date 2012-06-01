@@ -185,7 +185,6 @@ module Spider
 				  puts url
 				  next if Comic.find_by_url(url)
 				  c = Comic.create(:name => a.text, :url => url, :cover => a.search('img').first['src'])
-				  puts c.inspect
 			end
 		end
 
