@@ -121,7 +121,6 @@ module Spider
 
 		def download_pages
 			Comic.enable.each do |comic|
-				next if [3,4,11,14].include?(comic.id)
 				comic.sections.each do |section|
 					section.pages.each do |page|
 						next if File.exist? page.path
