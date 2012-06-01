@@ -29,14 +29,13 @@ module Spider
 
 		def crawl_sections_index
 			Comic.enable.find_each do |comic|
-				puts comic.url
+				puts "#{comic.url} --->"
 				comic_home = get_page(comic.url)
-				puts comic_home
 				comic_home.search('#subBookList li a').reverse.each_with_index do |a, index|
 					url = "#{ROOT}#{a['href']}"
 					next if Section.find_by_url(url)
 					sec = Section.create(:name => a.text, :url => url, :comic => comic, :sequence => index + 1)
-					puts "#{sec.name} --- #{sec.url}" 
+					puts "   #{sec.name} --- #{sec.url}" 
 				end
 				sleep 2
 			end
