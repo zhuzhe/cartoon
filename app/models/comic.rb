@@ -18,6 +18,10 @@ class Comic < ActiveRecord::Base
 		update_attribute(:status, 0)
 	end
 
+	def update_section_list
+		`echo ok`
+	end
+
 	def self.get_by_sid sid
 		where("url like ?", "%/#{sid}/%").limit(1).first
 	end

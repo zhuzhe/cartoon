@@ -37,6 +37,11 @@ class Admin::ComicsController < ApplicationController
   	render :json => {:status => 'succes'}
   end
 
+  def update_section_list
+    @comic.update_section_list
+    redirect_to :back
+  end
+
   private
 
   def find_model

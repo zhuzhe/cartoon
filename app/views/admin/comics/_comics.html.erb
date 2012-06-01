@@ -43,6 +43,9 @@
         		  	<%= form_tag enable_admin_comic_path(comic) do %>
         		  		<button type='submit' class="btn btn-success enable">启用</button>
         		  	<% end -%>
+                    <%= form_tag update_section_list_admin_comic_path(comic) do %>
+                        <button type='submit' class='btn update'>更新</button>
+                    <% end -%>
         		  	<% end -%>
         		  </td>
         		</tr>

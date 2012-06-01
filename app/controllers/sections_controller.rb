@@ -22,7 +22,7 @@ class SectionsController < ApplicationController
 
     if params[:tag] == 'next' && @page.nil?
       if @section.next
-         redirect_to comic_path(@section.next)
+         redirect_to section_path(@section.next)
         else
          redirect_to comic_path(@section.comic) 
       end
