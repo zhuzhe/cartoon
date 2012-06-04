@@ -34,14 +34,10 @@ Cartoon::Application.routes.draw do
   resources :comics do
     collection do
       post 'search'
+      get 'hot'
+      get 'latest'
     end
   end
-
-  get "welcome/index"
-
-  get "welcome/latest"
-
-  get "welcome/hot"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

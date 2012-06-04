@@ -1,0 +1,35 @@
+<%= content_for :head do %>
+	<style type="text/css">
+		.nav-pills > li > a{
+			font-size: 24px;
+			height: 50px;
+			padding-top: 35px;
+		}
+
+		.section-name {
+			margin: 0 0 0 30px;
+		}
+	</style>
+<% end -%>
+
+
+<div class='row'>
+
+	<div class='span8'>
+		<h3 class='well'>今天</h3>
+
+		<ul class='nav nav-pills nav-stacked'>
+			<% @today_sections.each do |s| %>
+			<li>
+				<%= link_to s do  %>
+					<%= s.comic.name %>
+					<span class='section-name'>(<%= s.name %>)</span>
+
+				<% end -%>
+				
+			</li>
+			<% end -%>
+		</ul>
+	</div>
+
+</div>

@@ -35,6 +35,10 @@ class Comic < ActiveRecord::Base
 		end
 	end
 
+	def latest_section
+		Section.where(:comic_id => self.id).order('sequence DESC').limit(1).first
+	end
+
 	
 
 	class << self
@@ -49,6 +53,10 @@ class Comic < ActiveRecord::Base
 					Spider::Imanhua.new.update_comic comic
 				}	
 			end
+		end
+
+		def today
+		    where("created_at > #{(Time.now - 1.day)}").order('created_at DESC')
 		end
 
 	end

@@ -7,24 +7,15 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">漫画</a>
+          <a class="brand" href="/">漫画</a>
           
           <div class="nav-collapse">
             <ul class="nav">
-              <li class="active"><a href="/">首页</a></li>
-              <li><a href="#">热门</a></li>
-              <li><a href="#">更新</a></li>
+              <li class="<%= is_active?(:controller => 'welcome', :action => 'index') %>"><a href="/">首页</a></li>
+              <li class="<%= is_active?(:controller => 'comics', :action => 'hot') %>"><a href="/comics/hot">热门</a></li>
+              <li class="<%= is_active?(:controller => 'comics', :action => 'latest') %>"><a href="/comics/latest">更新</a></li>
             </ul>
           </div><!--/.nav-collapse -->
-          
-          <div class ='nav-collapse'>
-            <ul class='nav pull-right'>
-              <li>
-                <a class="btn" title="Log in to Fleetio">
-                               登录
-                 </a>
-              </li>
-            </ul>
             
           </div>
         </div>
