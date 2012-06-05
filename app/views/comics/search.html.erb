@@ -1,10 +1,21 @@
 
 
-
-<div>
-	<ul class='unstyled'>
-		<li>
-			
-		</li>
-	</ul>
+<div class='row'>
+	<div class='span8'>
+	 <%= form_tag search_comics_path, :class => 'form-search' do %>
+	     <%= text_field_tag :key , params[:key],:class => 'input-long search-query', :style => 'height:30px;width: 300px' %>
+	  <button type="submit" class="btn" style='height: 40px'>搜索</button>
+	   <% end -%>
+	</div>
 </div>
+
+<div class='row'>
+	<div class='span8' style='margin: 0 0 20px 35px'>
+		<% Tag.limit(10).each do |t| %>
+		    <%= link_to t.name, search_comics_path(:key => t.name) %>
+		<% end -%>
+	</div>
+</div>
+
+<%= render :partial => 'list' %>
+

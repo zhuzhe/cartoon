@@ -7,7 +7,9 @@ class ComicsController < ApplicationController
  
 
   def search
-    @comics = Comic.where("name like ?", "%#{params[:key]}%")
+    @comics1 = Comic.search_by_name_like(params[:key])
+    @comic2 = Comic.search_by_tag_name(params[:key])
+    @comics = @comics1 | @comic2
   end
 
   def hot
@@ -18,7 +20,7 @@ class ComicsController < ApplicationController
     @today_sections = Section.today
   end
 
-  
+
 
   private
 

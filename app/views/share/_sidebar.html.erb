@@ -2,14 +2,18 @@
     <div class="well sidebar-nav"  style='padding: 10px'>
     	<div>
             <%= form_tag search_comics_path, :class => 'form-search' do %>
-    		  <input type="text" class="input-medium search-query">
+                <%= text_field_tag :key , '',:class => 'input-medium search-query' %>
     		  <button type="submit" class="btn">搜索</button>
               <% end -%>
     	</div>
     	<div>
-    		<span style='float: left'>标签： </span>
+    		<span style='float: left'></span>
     		<ul class='unstyled'>
-    			<li style='margin: 0 5px'><%= link_to "喜剧", '#' %> </li>
+    			<li style='margin: 0 5px'>
+                    <% Tag.limit(10).each do |t| %>
+                        <%= link_to t.name, search_comics_path(:key => t.name) %>
+                    <% end -%>
+                 </li>
     		</ul>
     	</div>
     </div><!--/.well -->

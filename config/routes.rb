@@ -35,6 +35,7 @@ Cartoon::Application.routes.draw do
   resources :comics do
     collection do
       post 'search'
+      get 'search'
       get 'hot'
       get 'latest'
     end

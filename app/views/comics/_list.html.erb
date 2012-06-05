@@ -1,0 +1,44 @@
+<%= content_for :head do  %>
+	<%= stylesheet_link_tag 'comics' %>
+<% end -%>
+<div class='row'>
+
+	<div class='span8 well'>
+		<ul class='unstyled'>
+			<% @comics.each do |comic| %>
+			<li class='comic'>
+				<div>
+					<div class='cover'>
+						<%= link_to comic do %>
+							<%= image_tag comic.cover %>
+						<% end -%>
+					</div>
+
+					<div class='info'>
+						<div class='name'>
+							<%= link_to comic.name, comic %>
+						</div>
+						<div class='intro'>
+							<p>
+								<% if comic.description %>
+									<%= comic.description.truncate(200) %>
+								<% end -%>
+							</p>
+						</div>
+
+						<div class='tags'>
+							<% comic.tags.each do |tag| %>
+							<span>
+								<%= link_to tag.name, search_comics_path(:key => tag.name) %>
+							</span>
+							<% end -%>
+						</div>
+
+					</div>
+				</div>
+			</li>
+			<% end -%>
+		</ul>
+	</div>
+
+</div>

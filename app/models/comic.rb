@@ -10,6 +10,8 @@ class Comic < ActiveRecord::Base
 	scope :latest, lambda { where("status = 1").order("updated_at DESC") }
 	scope :enable_end, lambda { where("status = 1 AND nature = 1")}
 	scope :enable_continue, lambda { where("status = 1 AND nature = 0")}
+	scope :search_by_name_like, lambda {|name| where("status = 1 AND name like ?", "%#{name}%")}
+	scope :search_by_tag_name, lambda {|name| joins(:tags).where("status = 1 AND tags.name like ?", "%#{name}%") }
 
 	def enable?
 		status == 1 ? true : false
