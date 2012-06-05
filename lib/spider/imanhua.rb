@@ -45,7 +45,7 @@ module Spider
 		end
 
 		def crawl_comic_extra_info
-			Comic.find_each do |comic|
+			Comic.enable.find_each do |comic|
 				comic_home = get_page(comic.url)
 				cover = comic_home.search('.bookCover img').first
 				desc = comic_home.search('.intro').first

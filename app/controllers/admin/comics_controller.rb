@@ -24,7 +24,7 @@ class Admin::ComicsController < ApplicationController
   end
 
   def disable_list
-  	@comics = Comic.paginate(:per_page => 10, :page => params[:page]).order('status DESC')
+  	@comics = Comic.disable.paginate(:per_page => 50, :page => params[:page]).order('status DESC')
   end
 
   def update
@@ -44,6 +44,19 @@ class Admin::ComicsController < ApplicationController
 
   def update_all_sections
     Comic.update_all_sections
+    redirect_to :back
+  end
+
+  def add_tag
+    params[:tags].split(' ').each do |t|
+      tag = Tag.find_by_name(t)
+      unless tag
+        tag = Tag.create(:name => t)
+      end
+      unless @comic.tags.include?(tag)
+        @comic.tags << tag
+      end
+    end
     redirect_to :back
   end
 

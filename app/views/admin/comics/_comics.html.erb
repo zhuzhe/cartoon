@@ -30,6 +30,7 @@
             <th>状态</th>
             <th>章节</th>
             <th>热度</th>
+            <th>标签</th>
             <th>操作</th>
           </tr>
         </thead>
@@ -37,7 +38,7 @@
         	<% @comics.each do |comic| %>
         		<tr>
         		  <td><%= comic.id %></td>
-        		  <td><%= link_to comic.name, admin_comic_path(comic) %></td>
+        		  <td><%= link_to comic.name, comic, :target => '_blank' %></td>
                   <td>
                     <%= form_for comic, :as => 'post', :url => admin_comic_path(comic), :method => 'put' do |f| %>
                         <%= f.select :nature, [['未完结', '0'], ['已完结',1]] %>
@@ -50,6 +51,12 @@
         		  		<%= f.select :hot, (1..10).to_a.map{|i|[i, i]} %>
         		  	<% end -%>
         		  </td>
+                  <td>
+                    <%= form_tag add_tag_admin_comic_path(comic) do %>
+                        <%= text_field_tag :tags, comic.tags.map{|t|t.name}.join(' '), :size => 7, :style => 'width:100px' %>
+                        <button class='btn' type='submit'>更新</button>
+                    <% end -%>
+                  </td>
         		  <td>
                     <div>
         		  	<% if comic.enable? %>

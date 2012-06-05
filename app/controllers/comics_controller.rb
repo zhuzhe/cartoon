@@ -18,6 +18,8 @@ class ComicsController < ApplicationController
     @today_sections = Section.today
   end
 
+  
+
   private
 
   def find_comic

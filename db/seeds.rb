@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Emanuel', :city => cities.first)
+['热血','格斗','魔幻','科幻','喜剧','推理','恐怖','灵异'].each do |i|
+	next if Tag.find_by_name(i)
+	Tag.create(:name => i)
+end

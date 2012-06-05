@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120601072724) do
+ActiveRecord::Schema.define(:version => 20120605071531) do
 
   create_table "bookcases", :force => true do |t|
     t.integer  "user_id"
@@ -36,6 +36,13 @@ ActiveRecord::Schema.define(:version => 20120601072724) do
     t.integer  "hot",         :default => 0
     t.integer  "status",      :default => 0
     t.integer  "nature",      :default => 0
+  end
+
+  create_table "comics_tags", :force => true do |t|
+    t.integer  "comic_id"
+    t.integer  "tag_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "pages", :force => true do |t|

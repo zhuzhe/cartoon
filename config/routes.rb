@@ -15,6 +15,7 @@ Cartoon::Application.routes.draw do
         post :update_section_list
         post :enable
         post :disable 
+        post :add_tag
       end
     end
   end
