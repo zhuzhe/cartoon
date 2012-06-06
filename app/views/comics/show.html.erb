@@ -35,10 +35,11 @@
 	<div class='well sidebar-nav'>
 		<ul class='nav nav-pills nav-stacked'>
 			<% @comic.sections.each do |s| %>
-
-			<li>
-				<%= link_to s.name, s %>
-			</li>
+				<% unless s.pages.blank? %>
+					<li>
+						<%= link_to s.name, s %>
+					</li>
+				<% end -%>
 			<% end -%>
 		</ul>
 </div>

@@ -7,7 +7,10 @@ class Section < ActiveRecord::Base
 
 
 	def next
-		Section.where(:comic_id => comic.id, :sequence => sequence + 1).limit(1).first
+		next_section = Section.where(:comic_id => comic.id, :sequence => sequence + 1).limit(1).first
+		if next_section && next_section.pages.blank?
+			nil
+		end
 	end
 
 	def update_pages
