@@ -17,8 +17,12 @@
 <%#= render :partial => 'page_nav' %>
 <div class='row'>
 	<div class='span8 offset2 well'>
+    <% if @page.nil? %>
+      <h3>对不起，本章暂无</h3>
+    <% else %>
 		<%= link_to section_path(:id => @section, :page_id => @page.id, :tag => 'next'), :class => 'next' do %>
 			<%= image_tag @page.image_path %>
+    <% end -%>
 		<% end -%>
 	</div>
 </div>
