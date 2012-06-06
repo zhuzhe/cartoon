@@ -8,6 +8,7 @@ module Spider
 	class Imanhua
 
 		ROOT = "http://imanhua.com"
+		COVER_ROOT = "/home/www/images/comic_covers"
 
 		def home
 			@home ? @home : @home = Nokogiri::HTML(open(ROOT))
@@ -17,6 +18,20 @@ module Spider
 			agent = create_agent
 			html = Iconv.iconv("UTF-8//IGNORE","GB2312//IGNORE", agent.get(url).body).to_s
 			Nokogiri::HTML(html, nil, 'utf-8') 
+		end
+
+		def download_covers
+			Dir.mkdir(COVER_ROOT) unless File.directory? COVER_ROOT
+			Comic.enable.find_each do |comic|
+			    next if comic.cover.blank?
+			    cover_path = "#{COVER_ROOT}/#{comic.id}.jpg"
+			    next if File.exist? cover_path
+				open(comic.cover) do |f|
+					File.open(cover_path, 'w') do |new_file|
+						new_file.write f.read
+					end
+				end
+			end
 		end
 
 		def crawl_comics_index
@@ -45,7 +60,7 @@ module Spider
 		end
 
 		def crawl_comic_extra_info
-			Comic.enable.find_each do |comic|
+			Comic.find_each do |comic|
 				comic_home = get_page(comic.url)
 				cover = comic_home.search('.bookCover img').first
 				desc = comic_home.search('.intro').first

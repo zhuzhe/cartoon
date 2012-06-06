@@ -56,4 +56,10 @@ namespace :spider do
 		puts 'done'
 	end
 
+	desc "download covers"
+	task :download_covers => :environment do
+		Spider::Imanhua.new.download_covers
+		puts 'done'
+	end
+
 end

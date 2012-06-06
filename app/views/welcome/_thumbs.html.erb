@@ -1,0 +1,24 @@
+<ul class="thumbnails" style='padding:15px'>
+  <% comics.each do |comic| %>
+    <li class="span2">
+      <div class="thumbnail">
+        <%= link_to comic do %>
+            <%= image_tag comic.cover %>
+        <!-- <img src="http://placehold.it/160x200" alt=""> -->
+        <% end -%>
+        </a>
+        <h3 class='comic_name'>
+           <%= link_to comic.name.truncate(8), comic %>
+         </h3>
+         <div class='tags' style='height: 20px'>
+           <% comic.tags[0..2].each do |t| %>
+           <span>
+             <%= link_to t.name, search_comics_path(:key => t.name) %>
+             </span> 
+           <% end -%>
+        </div>
+      </div>
+    </li>
+  <% end -%>
+  
+</ul>

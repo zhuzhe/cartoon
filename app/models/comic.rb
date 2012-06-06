@@ -31,6 +31,10 @@ class Comic < ActiveRecord::Base
 		}
 	end
 
+	def cover_path
+		"/covers_picture/#{id}.jpg"
+	end
+
 	def nature_explain
 		case nature
 		when 1 : '已完结'

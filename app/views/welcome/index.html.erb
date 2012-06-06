@@ -1,4 +1,19 @@
-	
+	<%= content_for :head do %>
+    <style type="text/css">
+      .thumbnail{
+        border: none;
+      }
+
+      .image-box {
+        display: block;
+        box-shadow: 10px 10px 5px #888888;
+      }
+
+      .comic_name {
+        
+      }
+    </style>
+  <% end -%>
 
     
       <div class="row">
@@ -7,43 +22,13 @@
           <div class='well'>
             <h2><%= link_to '> 最近更新', latest_comics_path %></h2>
             <hr style='border-color: silver'/>
-              <ul class="thumbnails" style='padding:15px'>
-                <% @latest.each do |comic| %>
-                  <li class="span2">
-                    <div class="thumbnail">
-                      <%= link_to comic do %>
-                        <%= image_tag comic.cover %>
-                      <!-- <img src="http://placehold.it/160x200" alt=""> -->
-                      <% end -%>
-                      </a>
-                      <h5><%= comic.name %></h5>
-                      <div style='height: 20px'><span style='float: left'>标签：</span> <ul  class="unstyled" style='float: left'><li><%= link_to "热血", '#' %></li></ul></div>
-                    </div>
-                  </li>
-                <% end -%>
-                
-              </ul>
+              <%= render :partial => 'thumbs', :locals => {:comics => @latest} %>
           </div>
 
           <div class='well'>
             <h2><%= link_to '> 热门', hot_comics_path %></h2>
             <hr style='border-color: silver'/>
-              <ul class="thumbnails" style='padding:15px'>
-                <% @hot.each do |comic| %>
-                  <li class="span2">
-                    <div class="thumbnail">
-                      <%= link_to comic do %>
-                        <%= image_tag comic.cover %>
-                      <!-- <img src="http://placehold.it/160x200" alt=""> -->
-                      <% end -%>
-                      </a>
-                      <h5><%= comic.name %></h5>
-                      <div style='height: 20px'><span style='float: left'>标签：</span> <ul  class="unstyled" style='float: left'><li><%= link_to "热血", '#' %></li></ul></div>
-                    </div>
-                  </li>
-                <% end -%>
-                
-              </ul>
+              <%= render :partial => 'thumbs', :locals => {:comics => @hot} %>
           </div>
           	
         </div>
