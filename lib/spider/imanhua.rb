@@ -171,6 +171,7 @@ module Spider
 							MiniMagick::Image.open(page.path).write page.path
 						end
 						rescue Exception => e
+							puts e
 							next
 						end
 						sleep 3

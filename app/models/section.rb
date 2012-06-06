@@ -5,7 +5,7 @@ class Section < ActiveRecord::Base
 
 
 	def next
-		Section.where(:comic => comic, :sequence => sequence + 1)
+		Section.where(:comic => comic, :sequence => sequence + 1).limit(1).first
 	end
 
 
