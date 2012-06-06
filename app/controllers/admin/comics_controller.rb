@@ -1,4 +1,4 @@
-class Admin::ComicsController < ApplicationController
+class Admin::ComicsController < Admin::ApplicationController
 
 	before_filter :find_model
 

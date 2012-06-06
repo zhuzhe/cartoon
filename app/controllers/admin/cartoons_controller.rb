@@ -1,4 +1,4 @@
-class Admin::CartoonsController < ApplicationController
+class Admin::CartoonsController < Admin::ApplicationController
   def index
 
   	@cartoons = Cartoon.paginate(:per_page => 50, :page => params[:page])
