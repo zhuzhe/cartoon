@@ -1,3 +1,5 @@
+require File.expand_path("../../../lib/spider/spider.rb", __FILE__)
+
 class Section < ActiveRecord::Base
 	belongs_to :comic
 
@@ -5,7 +7,11 @@ class Section < ActiveRecord::Base
 
 
 	def next
-		Section.where(:comic => comic, :sequence => sequence + 1).limit(1).first
+		Section.where(:comic_id => comic.id, :sequence => sequence + 1).limit(1).first
+	end
+
+	def update_pages
+		Spider::Imanhua.new.update_section self
 	end
 
 
