@@ -1,7 +1,7 @@
 require File.expand_path("../../../lib/spider/spider.rb", __FILE__)
 
 class Comic < ActiveRecord::Base
-	has_many :sections
+	has_many :sections, :order => 'sequence DESC'
 	has_and_belongs_to_many :tags
 
 	scope :enable, lambda { where("status = 1") }
