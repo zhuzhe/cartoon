@@ -55,11 +55,11 @@ class Comic < ActiveRecord::Base
 		end
 
 		def update_all_sections
-			enable_continue.each do |comic|
-				Thread.new {
+			Thread.new {
+				enable_continue.each do |comic|
 					Spider::Imanhua.new.update_comic comic
-				}	
-			end
+				end
+			}
 		end
 
 		def today
