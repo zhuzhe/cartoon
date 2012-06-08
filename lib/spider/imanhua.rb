@@ -260,7 +260,7 @@ module Spider
 
 		def update_comic comic
 			refresh_comic_section comic
-			Section.where("comic_id = #{comic.id} AND updated_at > ?", "#{(Time.now - 2.day).to_s(:db)}").each do |section|
+			Section.where("comic_id = #{comic.id}").order("sequence DESC").limit(50).each do |section|
 				update_section section
 			end
 		end
