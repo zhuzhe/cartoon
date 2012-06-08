@@ -25,6 +25,21 @@ class Comic < ActiveRecord::Base
 		update_attribute(:status, 0)
 	end
 
+	def run_update
+		update_attribute(:update_status, 1)
+	end
+
+	def stop_update
+		update_attribute(:update_status, 0)
+	end
+
+	def updating?
+		case update_status
+			when 0 : false
+			when 1 : true
+		end
+	end
+
 	def update_section_list
 		Thread.new {
 			Spider::Imanhua.new.update_comic(self)

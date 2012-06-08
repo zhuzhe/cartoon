@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120605071531) do
+ActiveRecord::Schema.define(:version => 20120608024445) do
 
   create_table "bookcases", :force => true do |t|
     t.integer  "user_id"
@@ -29,13 +29,14 @@ ActiveRecord::Schema.define(:version => 20120605071531) do
     t.string   "name"
     t.string   "description"
     t.string   "cover"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
     t.string   "sections"
     t.string   "url"
-    t.integer  "hot",         :default => 0
-    t.integer  "status",      :default => 0
-    t.integer  "nature",      :default => 0
+    t.integer  "hot",           :default => 0
+    t.integer  "status",        :default => 0
+    t.integer  "nature",        :default => 0
+    t.integer  "update_status", :default => 0
   end
 
   create_table "comics_tags", :force => true do |t|
