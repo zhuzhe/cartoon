@@ -31,6 +31,7 @@
             <th>章节</th>
             <th>热度</th>
             <th>标签</th>
+            <th>推荐</th>
             <th>操作</th>
           </tr>
         </thead>
@@ -55,6 +56,11 @@
                     <%= form_tag add_tag_admin_comic_path(comic) do %>
                         <%= text_field_tag :tags, comic.tags.map{|t|t.name}.join(' '), :size => 7, :style => 'width:100px' %>
                         <button class='btn' type='submit'>更新</button>
+                    <% end -%>
+                  </td>
+                  <td>
+                    <%= form_for comic, :as => 'post', :url => recommand_admin_comic_path(comic), :method => 'post' do |f| %>
+                        <button class='btn' type='submit'>推荐</button>
                     <% end -%>
                   </td>
         		  <td>

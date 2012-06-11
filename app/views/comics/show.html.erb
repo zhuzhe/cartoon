@@ -54,24 +54,34 @@
 		<%= image_tag @comic.cover, :style => 'float: left' %>
 		<div style='float: left;padding: 15px'>
 			<button class="btn btn-primary">放入书柜</button>
-			<!-- <ul class='unstyled' style='margin-top:15px'>
-				<li style='margin:10px 0'>人气: 15200</li>
-				<li style='width:400px'>
-					<ul class="unstyled">
-					<% (1..20).each do %>
-						<li style='float:left'>
-						  	<a href="#">
-						    <img src="http://placehold.it/50x50" alt="">
-						    </a>
-						</li>
-					<% end -%>
-				</li>
-			</ul> -->
 		</div>
 	</div>
+
+
+	<div  style='clear:both;padding: 15px 0'>
+
+	<h3>简介:</h3>
 	<p style='clear:both;padding: 15px'>
 		<%= @comic.description %>
 	   </p>
+	</div>
+
+
+	</div>
+
+	<div  style='clear:both;padding: 15px 0'>
+
+	<h3>标签:</h3>
+		<div style='font-size:18px;margin:15px'>
+			<% @comic.tags.each do |tag| %>
+				<span>
+					<%= link_to tag.name, search_comics_path(:key => tag.name) %>
+				</span>
+			<% end -%>
+		</div>
+	</div>
+
+
 	</div>
 	<!-- <div style='clear:both;margin:20px 0'>
 		<h3><%= link_to "> 美图", '#' %></h3>

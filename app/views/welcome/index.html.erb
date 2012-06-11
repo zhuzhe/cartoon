@@ -9,17 +9,62 @@
         box-shadow: 10px 10px 5px #888888;
       }
 
-      .comic_name {
-        
+      .recommand .cover{
+        width: 150px;
+        float: left;
+      }
+
+      .recommand .info {
+        width: 400px;
+        float: left;
+      }
+
+      .recommand .name {
+        font-size: 24px;
+      }
+
+      .recommand .intro {
+        padding: 15px;
       }
     </style>
   <% end -%>
+      
 
     
       <div class="row">
         
+        
         <div class="span9">
-          <div class='well'>
+
+          <% if @recommand %>
+            <div class='well recommand' style='clear:both;height: 230px'>
+              <h2 style='color:red'>本周推荐</h2>
+              <hr style='border-color: silver'/>
+
+              <div>
+                <div class='cover'>
+                  <%= link_to @recommand do %>
+                    <%= image_tag @recommand.cover %>
+                  <% end -%>
+                </div>
+
+                <div class='info'>
+                  <div class='name'>
+                    <%= link_to @recommand.name, @recommand %>
+                  </div>
+                  <div class='intro'>
+                    <p>
+                      <% if @recommand.description %>
+                        <%= @recommand.description.truncate(200) %>
+                      <% end -%>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end -%>
+
+          <div class='well' style='clear:both'>
             <h2><%= link_to '> 最近更新', latest_comics_path %></h2>
             <hr style='border-color: silver'/>
               <%= render :partial => 'thumbs', :locals => {:comics => @latest} %>

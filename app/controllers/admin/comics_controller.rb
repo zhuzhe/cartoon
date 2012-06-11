@@ -60,6 +60,11 @@ class Admin::ComicsController < Admin::ApplicationController
     redirect_to :back
   end
 
+  def recommand
+    @comic.push_in_recommand_quence
+    redirect_to :back
+  end
+
   private
 
   def find_model

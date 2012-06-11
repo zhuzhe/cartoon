@@ -1,5 +1,7 @@
 Cartoon::Application.routes.draw do
 
+  resources :quences
+
   resources :tags
 
   namespace :admin do
@@ -16,6 +18,7 @@ Cartoon::Application.routes.draw do
         post :enable
         post :disable 
         post :add_tag
+        post :recommand
       end
     end
   end

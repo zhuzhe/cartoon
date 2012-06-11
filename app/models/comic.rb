@@ -61,6 +61,10 @@ class Comic < ActiveRecord::Base
 		Section.where(:comic_id => self.id).order('sequence DESC').limit(1).first
 	end
 
+	def push_in_recommand_quence
+		Quence.create(:comic_id => id)
+	end
+
 	
 
 	class << self
@@ -79,6 +83,11 @@ class Comic < ActiveRecord::Base
 
 		def today
 		    where("created_at > #{(Time.now - 1.day)}").order('created_at DESC')
+		end
+
+		def recommand
+			s = Quence.order("created_at DESC").limit(1).first
+			s.nil? ? nil : s.comic
 		end
 
 	end

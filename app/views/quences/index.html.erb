@@ -1,0 +1,23 @@
+<h1>Listing quences</h1>
+
+<table>
+  <tr>
+    <th>Comic</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @quences.each do |quence| %>
+  <tr>
+    <td><%= quence.comic_id %></td>
+    <td><%= link_to 'Show', quence %></td>
+    <td><%= link_to 'Edit', edit_quence_path(quence) %></td>
+    <td><%= link_to 'Destroy', quence, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Quence', new_quence_path %>

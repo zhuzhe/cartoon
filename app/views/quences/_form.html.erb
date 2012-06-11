@@ -1,0 +1,21 @@
+<%= form_for(@quence) do |f| %>
+  <% if @quence.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@quence.errors.count, "error") %> prohibited this quence from being saved:</h2>
+
+      <ul>
+      <% @quence.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :comic_id %><br />
+    <%= f.number_field :comic_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
