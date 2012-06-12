@@ -1,4 +1,14 @@
 
+    <script type="text/javascript">
+      $(function () {
+        $('#logout').click(function () {
+          alert(1)
+          $('#logout_form').submit();
+          return false;
+        });
+      })
+    </script>
+
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -14,6 +24,29 @@
               <li class="<%= is_active?(:controller => 'welcome', :action => 'index') %>"><a href="/">首页</a></li>
               <li class="<%= is_active?(:controller => 'comics', :action => 'hot') %>"><a href="/comics/hot">热门</a></li>
               <li class="<%= is_active?(:controller => 'comics', :action => 'latest') %>"><a href="/comics/latest">更新</a></li>
+            </ul>
+
+            <ul class="nav pull-right user_info">
+                <% unless login? %>
+                  <li>
+                    <a href="/login"  style='color:#08C'>登录</a>
+                  </li>
+                  <li class="divider-vertical"></li>
+                  <li><a href="/signup"  style='color:#08C'>注册</a></li>
+
+                  <% else %>
+
+                  <li>
+                    <%= link_to current_user.name, current_user, :style => 'color:#08C;font-size:18px' %>
+                  </li>
+                  <li class="divider-vertical"></li>
+                  <li>
+                      <%= form_tag logout_path, :style => 'display:none', :id => 'logout_form' do %>
+
+                      <% end -%>
+                      <%= link_to "退出", '#', :id => 'logout' %>
+                  </li>
+                <% end -%>
             </ul>
           </div><!--/.nav-collapse -->
             

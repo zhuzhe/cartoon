@@ -1,0 +1,30 @@
+
+
+<%= form_tag(logining_path, :class => 'form-horizontal') do %>
+  <fieldset>
+    <legend>登录</legend>
+    <% if flash[:error] %>
+      <div class="alert  alert-error">
+        <strong><%= flash[:error] %></strong>
+      </div>
+    <% end -%>
+    <div class="control-group">
+    	<%= label_tag :email, "邮箱", :class => 'control-label' %>
+      <div class="controls">
+      	<%= text_field_tag :email, '', :class => 'input-xlarge' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+    	<%= label_tag :password, "密码", :class => 'control-label' %>
+      <div class="controls">
+      	<%= password_field_tag :password, '', :class => 'input-xlarge' %>
+      </div>
+    </div>
+
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">登录</button>
+    </div>
+
+  </fieldset>
+<% end -%>

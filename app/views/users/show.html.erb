@@ -1,25 +1,18 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Name:</b>
-  <%= @user.name %>
-</p>
-
-<p>
-  <b>Password:</b>
-  <%= @user.password %>
-</p>
-
-<p>
-  <b>Sex:</b>
-  <%= @user.sex %>
-</p>
-
-<p>
-  <b>Email:</b>
-  <%= @user.email %>
-</p>
-
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<div class="row">
+  
+  
+  <div class="span9">
+    
+    <div class='well'>
+      <h2 class='title'>书架</h2>
+      <hr style='border-color: silver'/>
+      <% if @comics.blank? %>
+        <p style='font-size: 24px;text-align:center'>
+           还没有收藏漫画
+        </p>
+      <% else %>
+        <%= render :partial => 'welcome/thumbs', :locals => {:comics => @comics} %>
+        <% end -%>
+    </div>
+    	
+  </div>

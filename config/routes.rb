@@ -23,13 +23,15 @@ Cartoon::Application.routes.draw do
     end
   end
 
-  
-
   resources :books
 
   resources :bookcases
 
-  resources :users
+  resources :users do
+    collection do
+      post 'favorite_book'
+    end
+  end
 
   resources :sections
 
@@ -43,6 +45,12 @@ Cartoon::Application.routes.draw do
       get 'latest'
     end
   end
+
+  match 'login' => "sessions#new", :as => :login
+  match 'logining' => "sessions#create", :as => :logining, :via => [:post]
+  match 'logout' => "sessions#destroy", :as => :logout, :via => [:get, :post]
+
+  match 'signup' => 'users#new', :as => :signup
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

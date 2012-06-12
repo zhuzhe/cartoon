@@ -54,7 +54,10 @@
 	<div>
 		<%= image_tag @comic.cover, :style => 'float: left' %>
 		<div style='float: left;padding: 15px'>
-			<button class="btn btn-primary">放入书柜</button>
+			<%= form_tag favorite_book_path do %>
+				<%= hidden_field_tag :comic_id, @comic.id %>
+				<button class="btn btn-primary">放入书柜</button>
+			<% end -%>
 		</div>
 	</div>
 
