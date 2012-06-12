@@ -18,4 +18,10 @@ class ApplicationController < ActionController::Base
   	session[:user_id] = nil
   end
 
+  def require_login
+  	unless login?
+  		redirect_to login_path
+  	end
+  end
+
 end

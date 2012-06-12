@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   
   before_filter :find_user
+  before_filter :require_login, :include => [:favorite_book]
 
   def show
     @user = User.find(params[:id])
@@ -9,11 +10,6 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-  end
-
-
-  def edit
-    @user = User.find(params[:id])
   end
 
 
