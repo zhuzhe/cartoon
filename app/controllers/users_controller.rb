@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
   
   before_filter :find_user
-  before_filter :require_login, :include => [:favorite_book]
+  before_filter :require_login, :only => [:favorite_book]
 
   def show
     @user = User.find(params[:id])
-    @comics = @user.comics
+    @comics = @user.comics_order_by_update_section_time
   end
 
   def new

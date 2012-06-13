@@ -8,20 +8,26 @@ class User < ActiveRecord::Base
 	validates :password,
 						 :length => { :in => 6..15, :message => "密码长度为6到15位" }	
 
-	has_one :bookcase
+	has_one :bookcase, :dependent => :destroy
 	has_many :books, :through => :bookcase
 	has_many :comics, :through => :books
 
 
 
 
-	before_create do |user|
+	after_create do |user|
 		Bookcase.create(:user_id => user.id)
 	end
 
 	def add_comic_to_bookcase comic
 		return if Book.find_by_comic_id_and_bookcase_id(comic.id, bookcase.id)
 		Book.create(:comic_id => comic.id, :bookcase_id => bookcase.id)
+	end
+
+	def comics_order_by_update_section_time
+		comics.sort do |a, b|
+			b.sections.first.created_at <=> a.sections.first.created_at
+ 		end
 	end
 
 	class << self

@@ -2,12 +2,20 @@
     <script type="text/javascript">
       $(function () {
         $('#logout').click(function () {
-          alert(1)
           $('#logout_form').submit();
           return false;
         });
       })
     </script>
+
+    <style type="text/css">
+
+        .navbar .nav-collapse .nav li > a {
+          color: #FA8258;
+          font-size: 18px;
+        }
+
+    </style>
 
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
@@ -44,7 +52,7 @@
                       <%= form_tag logout_path, :style => 'display:none', :id => 'logout_form' do %>
 
                       <% end -%>
-                      <%= link_to "退出", '#', :id => 'logout' %>
+                      <%= link_to "退出", '#', :id => 'logout', :style => 'color: #D8D8D8' %>
                   </li>
                 <% end -%>
             </ul>

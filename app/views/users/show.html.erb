@@ -1,3 +1,10 @@
+<%= content_for :head do %>
+  <style type="text/css">
+
+  </style>
+  
+<% end -%>
+
 <div class="row">
   
   
@@ -11,7 +18,26 @@
            还没有收藏漫画
         </p>
       <% else %>
-        <%= render :partial => 'welcome/thumbs', :locals => {:comics => @comics} %>
+        <ul class="thumbnails" style='padding:15px'>
+          <% @comics.each do |comic| %>
+            <li class="span2" style='width: 125px'>
+              <div class="thumbnail">
+                <%= link_to comic do %>
+                    <%= image_tag comic.cover %>
+                <!-- <img src="http://placehold.it/160x200" alt=""> -->
+                <% end -%>
+                </a>
+                <h3 class='comic_name'>
+                   <%= link_to comic.name.truncate(8), comic %>
+                </h3>
+                 <div style='padding:2px'>
+                  <%= link_to comic.sections.first.name, comic.sections.first, :style => 'color:#FA8258' %>
+                 </div>
+              </div>
+            </li>
+          <% end -%>
+          
+        </ul>
         <% end -%>
     </div>
     	

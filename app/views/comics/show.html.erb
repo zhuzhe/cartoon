@@ -54,9 +54,13 @@
 	<div>
 		<%= image_tag @comic.cover, :style => 'float: left' %>
 		<div style='float: left;padding: 15px'>
+			<% if login? && current_user.comics.include?(@comic) %>
+				<span style='background-color:#F7F7F7;padding:5px;color:green;font-size:18px;border:1px solid silver'>已收藏</span>
+			<% else %>
 			<%= form_tag favorite_book_users_path do %>
 				<%= hidden_field_tag :comic_id, @comic.id %>
 				<button class="btn btn-primary">放入书柜</button>
+			<% end -%>
 			<% end -%>
 		</div>
 	</div>
@@ -64,7 +68,7 @@
 
 	<div  style='clear:both;padding: 15px 0'>
 
-	<h3>简介:</h3>
+	<h3 class='title'>简介:</h3>
 	<p style='clear:both;padding: 15px'>
 		<%= @comic.description %>
 	   </p>
@@ -75,7 +79,7 @@
 
 	<div  style='clear:both;padding: 15px 0'>
 
-	<h3>标签:</h3>
+	<h3 class='title'>标签:</h3>
 		<div style='font-size:18px;margin:15px'>
 			<% @comic.tags.each do |tag| %>
 				<span>
