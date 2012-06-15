@@ -1,2 +1,40 @@
-<h1>Admin::Comics#show</h1>
-<p>Find me in app/views/admin/comics/show.html.erb</p>
+
+
+
+<%= form_for(@comic, :url => admin_comic_path(@comic) , :html => {:class => 'form-horizontal'}) do |f| %>
+  <fieldset>
+    <legend><%= @comic.name %></legend>
+    <div class="control-group">
+    	<%= f.label :name, "名字", :class => 'control-label' %>
+      <div class="controls">
+      	<%= f.text_field :name, :class => 'input-xlarge' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+    	<%= f.label :description, "简介", :class => 'control-label' %>
+      <div class="controls">
+      	<%= f.text_area :description, :class => 'input-xlarge', :rows => 5 %>
+      </div>
+    </div>
+
+    <div class="control-group">
+    	<%= f.label :hot, "热度", :class => 'control-label' %>
+      <div class="controls">
+        <%= f.select :hot, (1..10).to_a.map{|i|[i, i]} %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :nature, "连载状态", :class => 'control-label' %>
+      <div class="controls">
+        <%= f.select :nature, [['未完结', 0], ['已完结',1]] %>
+      </div>
+    </div>
+
+    <div class="form-actions">
+        <button type="submit" class="btn btn-success">保存</button>
+    </div>
+
+  </fieldset>
+<% end -%>

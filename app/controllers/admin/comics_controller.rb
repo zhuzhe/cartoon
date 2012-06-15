@@ -28,7 +28,7 @@ class Admin::ComicsController < Admin::ApplicationController
   end
 
   def update
-  	@comic.update_attributes(params[:post])
+  	@comic.update_attributes(params[:comic])
   	redirect_to :back
   end
 
@@ -48,6 +48,7 @@ class Admin::ComicsController < Admin::ApplicationController
   end
 
   def add_tag
+    @comic.tags.clear
     params[:tags].split(' ').each do |t|
       tag = Tag.find_by_name(t)
       unless tag
@@ -63,6 +64,10 @@ class Admin::ComicsController < Admin::ApplicationController
   def recommand
     @comic.push_in_recommand_quence
     redirect_to :back
+  end
+
+  def search
+    @comics = Comic.where("name like ?", "#{params[:key]}").paginate(:per_page => 20, :page => params[:page])
   end
 
   private

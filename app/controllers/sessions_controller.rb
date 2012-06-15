@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
 			redirect_to :back
 		else
 			flash[:error] = "邮箱或者密码错误"
-			render :action => :new
+			redirect_to login_path
 		end
 	end
 

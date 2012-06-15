@@ -1,3 +1,10 @@
+	<div>
+        <%= form_tag search_admin_comics_path, :class => 'form-search' do %>
+            <%= text_field_tag :key , '',:class => 'input-medium search-query' %>
+		  <button type="submit" class="btn">搜索</button>
+          <% end -%>
+	</div>
+
 <ul class="nav nav-pills">
   <li>
     <a href="/admin/comics/enable_list">enable</a>

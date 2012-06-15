@@ -11,6 +11,8 @@ Cartoon::Application.routes.draw do
         post :update_all_sections
         get :enable_list
         get :disable_list
+        get :search
+        post :search
       end
 
       member do
