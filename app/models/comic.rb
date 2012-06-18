@@ -13,6 +13,7 @@ class Comic < ActiveRecord::Base
 	scope :search_by_name_like, lambda {|name| where("status = 1 AND name like ?", "%#{name}%")}
 	scope :search_by_tag_name, lambda {|name| joins(:tags).where("status = 1 AND tags.name like ?", "%#{name}%") }
 
+
 	def enable?
 		status == 1 ? true : false
 	end

@@ -1,13 +1,35 @@
 <%= content_for :head do %>
 	<style type="text/css">
-		.nav-pills > li > a{
-			font-size: 24px;
-			height: 50px;
-			padding-top: 35px;
-		}
 
 		.section-name {
-			margin: 0 0 0 30px;
+			margin: 0 0 0 15px;
+		}
+
+		.cover {
+			float: left;
+		}
+
+		.info {
+			padding: 0 0 0 20px;
+			float: left;
+			width: 600px;
+		}
+
+		.name {
+			font-size: 24px;
+			height: 50px;
+			float: left;
+		}
+
+		.time {
+			float: right;
+			color: green;
+			font-size: 18px;
+			
+		}
+
+		.time a { 
+			color: green;
 		}
 	</style>
 <% end -%>
@@ -15,21 +37,32 @@
 
 <div class='row'>
 
-	<div class='span8'>
-		<h3 class='well'>今天</h3>
-
+	<div class='span8 well' style='width:700px'>
 		<ul class='nav nav-pills nav-stacked'>
-			<% @today_sections.each do |s| %>
-			<li>
-				<%= link_to s do  %>
-					<%= s.comic.name %>
-					<span class='section-name'>(<%= s.name %>)</span>
+			<% @comics.each do |comic| %>
+			<% section = comic.sections.first %>
+			<% next if section.nil? %>
+			<li style='width: 700px;height: 100px'>
+				<div>
+					<div class='cover'>
+						<%= link_to section do %>
+							<%= image_tag comic.cover, :height => '80px' %>
+						<% end -%>
+					</div>
+					<div class='info'>
+						<%= link_to section, :class => 'name' do  %>
+							<%= comic.name %>
+							<span class='section-name'>(<%= section.name %>)</span>
 
-				<% end -%>
-				
+						<% end -%>
+						<span class='time'> <%= link_to timeformat(comic.updated_at), section %></span>
+					</div>
+					
+				</div>
 			</li>
 			<% end -%>
 		</ul>
+		<%= will_paginate @comics, :previous_label => '<', :next_label => '>' %>
 	</div>
 
 </div>

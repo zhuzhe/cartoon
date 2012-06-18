@@ -17,7 +17,7 @@ class ComicsController < ApplicationController
   end
 
   def latest
-    @today_sections = Section.today
+    @comics = Comic.latest.limit(100).paginate(:per_page => 20, :page => params[:page])
   end
 
 
