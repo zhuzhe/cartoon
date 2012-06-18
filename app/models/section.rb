@@ -5,6 +5,10 @@ class Section < ActiveRecord::Base
 
 	has_many :pages
 
+	after_create do |section|
+		section.comic.update_attribute(:updated_at, Time.now)
+	end
+
 
 	def next
 		next_section = Section.where(:comic_id => comic.id, :sequence => sequence + 1).limit(1).first
