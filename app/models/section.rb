@@ -11,6 +11,7 @@ class Section < ActiveRecord::Base
 
 	def first_page
 		page = pages.first
+		return unless page
 		if File.exist? page.image_path_on_disk
 			return page
 		else

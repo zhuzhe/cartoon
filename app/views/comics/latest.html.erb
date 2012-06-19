@@ -34,6 +34,14 @@
 		.time a { 
 			color: green;
 		}
+
+		.comic:nth-child(odd) {
+			background-color: #EEE;
+		}
+
+		.content {
+			padding: 10px;
+		}
 	</style>
 <% end -%>
 
@@ -45,8 +53,8 @@
 			<% @comics.each do |comic| %>
 			<% section = comic.sections.first %>
 			<% next if section.nil? %>
-			<li style='width: 700px;height: 100px'>
-				<div>
+			<li style='width: 700px;height: 90px' class='comic'>
+				<div class='content'>
 					<div class='cover'>
 						<%= link_to section do %>
 							<%= image_tag comic.cover_path, :height => '80px' %>

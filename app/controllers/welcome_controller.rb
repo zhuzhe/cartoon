@@ -10,4 +10,5 @@ class WelcomeController < ApplicationController
 
   def hot
   end
+  
 end
