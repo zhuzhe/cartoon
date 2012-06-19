@@ -271,6 +271,16 @@ module Spider
 			download_section_page section
 		end
 
+		def clear_unavliable_page
+			Comic.enable.find_each do |comic|
+				comic.sections.each do |section|
+					section.pages.each do |page|
+						next if File.exist? page.image_path_on_disk
+					end
+				end
+			end
+		end
+
 		private
 
 		def analysis_category_page doc

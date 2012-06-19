@@ -55,7 +55,7 @@
 	<div>
 	<h1  style='padding-bottom: 15px'><%= @comic.name %></h1>
 	<div>
-		<%= image_tag @comic.cover, :style => 'float: left' %>
+		<%= image_tag @comic.cover_path, :style => 'float: left' %>
 		<div style='float: left;padding: 15px'>
 			<% if login? && current_user.comics.include?(@comic) %>
 				<span style='background-color:#F7F7F7;padding:5px;color:green;font-size:18px;border:1px solid silver'>已收藏</span>

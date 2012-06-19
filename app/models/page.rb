@@ -19,8 +19,18 @@ class Page < ActiveRecord::Base
 		"/cp/#{section.comic.id}/#{section.id}/#{sequence}.jpg"
 	end
 
+	def image_path_on_disk
+		"/home/www/images/comics/#{section.comic.id}/#{section.id}/#{sequence}.jpg"
+	end
+
 	def next
 		next_page = Page.where("section_id = #{section.id} AND sequence = #{sequence + 1}").limit(1).first
+		return unless next_page
+		if  File.exist?(next_page.image_path_on_disk)
+			return next_page 
+		else
+			return next_page.next
+		end
 	end
 
 	def prev

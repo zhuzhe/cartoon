@@ -14,7 +14,7 @@ class SectionsController < ApplicationController
   # GET /sections/1.json
   def show
     @section = Section.find(params[:id])
-    params[:page_id].blank? ? @page = @section.pages.first : @page = Page.find(params[:page_id]) 
+    params[:page_id].blank? ? @page = @section.first_page : @page = Page.find(params[:page_id]) 
     case params[:tag]
       when 'next' : @page = @page.next
       when 'prev' : @page = @page.prev

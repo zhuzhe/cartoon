@@ -9,6 +9,15 @@ class Section < ActiveRecord::Base
 		section.comic.update_attribute(:updated_at, Time.now)
 	end
 
+	def first_page
+		page = pages.first
+		if File.exist? page.image_path_on_disk
+			return page
+		else
+			return page.next
+		end
+	end
+
 
 	def next
 		next_section = Section.where(:comic_id => comic.id, :sequence => sequence + 1).limit(1).first

@@ -48,7 +48,7 @@ class Comic < ActiveRecord::Base
 	end
 
 	def cover_path
-		"/covers_picture/#{id}.jpg"
+		"/covers/#{id}.jpg"
 	end
 
 	def nature_explain
