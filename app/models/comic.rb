@@ -6,7 +6,7 @@ class Comic < ActiveRecord::Base
 
 	scope :enable, lambda { where("status = 1") }
 	scope :disable, lambda { where("status = 0") }
-	scope :hot, lambda { where("status = 1 AND hot >= 8") }
+	scope :hot, lambda { where("status = 1 AND hot >= 5").order('hot DESC') }
 	scope :latest, lambda { where("status = 1").order("updated_at DESC") }
 	scope :enable_end, lambda { where("status = 1 AND nature = 1")}
 	scope :enable_continue, lambda { where("status = 1 AND nature = 0")}
@@ -54,7 +54,7 @@ class Comic < ActiveRecord::Base
 	def nature_explain
 		case nature
 		when 1 : '已完结'
-		when 0 : '未完结'
+		when 0 : '连载中'
 		end
 	end
 

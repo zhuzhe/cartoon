@@ -13,7 +13,7 @@ class ComicsController < ApplicationController
   end
 
   def hot
-    @comics = Comic.hot
+    @comics = Comic.hot.paginate(:per_page => 20, :page => params[:page])
   end
 
   def latest

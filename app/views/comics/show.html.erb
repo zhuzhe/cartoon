@@ -1,4 +1,7 @@
 <%= content_for :head do %>
+	
+	<title>月蚀漫画 - <%= @comic.name %></title>
+
 	<script type="text/javascript">
 
 		$(function () {
@@ -62,6 +65,14 @@
 				<button class="btn btn-success">放入书柜</button>
 			<% end -%>
 			<% end -%>
+
+			<div  style='padding: 5px'>
+				状态: <%= @comic.nature_explain %>
+			</div>
+
+			<div style='padding: 5px'>
+				更新日期: <%= @comic.updated_at.strftime("%y/%m/%d") %>
+			</div>
 		</div>
 	</div>
 
