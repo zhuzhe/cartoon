@@ -22,8 +22,9 @@ module Spider
 
 		def download_covers
 			Dir.mkdir(COVER_ROOT) unless File.directory? COVER_ROOT
-			Comic.enable.find_each do |comic|
+			Comic.find_each do |comic|
 			    next if comic.cover.blank?
+			    pp cover
 			    cover_path = "#{COVER_ROOT}/#{comic.id}.jpg"
 			    next if File.exist? cover_path
 				open(comic.cover) do |f|
