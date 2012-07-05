@@ -7,8 +7,8 @@
 <div class='row'>
 	<div class='span8'>
 	 <%= form_tag search_comics_path, :class => 'form-search' do %>
-	     <%= text_field_tag :key , params[:key],:class => 'input-long search-query', :style => 'height:30px;width: 300px' %>
-	  <button type="submit" class="btn" style='height: 40px'>搜索</button>
+	     <%= text_field_tag :key , params[:key],:class => 'input-long search-query', :style => 'height:30px' %>
+	  <button type="submit" class="btn" style='height: 40px;margin:10px 5px'>搜索</button>
 	   <% end -%>
 	</div>
 </div>
