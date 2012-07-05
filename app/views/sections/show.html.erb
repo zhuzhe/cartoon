@@ -2,6 +2,12 @@
   
   <title>月蚀漫画 - <%= "#{@section.comic.name} - #{@section.name}" %></title>
 
+  <script type="text/javascript">
+    $(function () {
+      $("html,body").animate({scrollTop: $("#move-to-page").offset().top}, 1000);
+    });
+  </script>
+
 <% end -%>
 
 <ul class="breadcrumb">
@@ -18,6 +24,8 @@
 
 
 <%#= render :partial => 'page_nav' %>
+<a href="#" id='move-to-page'></a>
+
 <div class='row'>
 	<div class='span8 offset2 well'>
     <% if @section.pages.nil? %>
@@ -33,5 +41,4 @@
 		<% end -%>
 	</div>
 </div>
-
 <%#= render :partial => 'page_nav' %>
