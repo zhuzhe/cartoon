@@ -7,14 +7,14 @@
 		<ul class='unstyled'>
 			<% @comics.each do |comic| %>
 			<li class='comic'>
-				<div>
-					<div class='cover'>
+				<div class='row'>
+					<div class='cover span2'>
 						<%= link_to comic do %>
 							<%= image_tag comic.cover_path %>
 						<% end -%>
 					</div>
 
-					<div class='info'>
+					<div class='info span6' style='margin-left: 0'>
 						<div class='name'>
 							<%= link_to comic.name, comic %>
 						</div>

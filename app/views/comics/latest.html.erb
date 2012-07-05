@@ -4,31 +4,14 @@
 
 	<style type="text/css">
 
-		.section-name {
-			margin: 0 0 0 15px;
-		}
-
-		.cover {
-			float: left;
-		}
-
-		.info {
-			padding: 0 0 0 20px;
-			float: left;
-			width: 600px;
-		}
-
 		.name {
-			font-size: 24px;
-			height: 50px;
-			float: left;
+			font-size: 18px;
+			margin: 15px 0;
 		}
 
 		.time {
-			float: right;
 			color: green;
 			font-size: 18px;
-			
 		}
 
 		.time a { 
@@ -39,8 +22,12 @@
 			background-color: #EEE;
 		}
 
-		.content {
-			padding: 10px;
+		.info {
+			margin: 15px 0;
+		}
+
+		.comic {
+			margin: 5px;
 		}
 	</style>
 <% end -%>
@@ -48,25 +35,32 @@
 
 <div class='row'>
 
-	<div class='span8 well' style='width:700px'>
+	<div class='span8 well'>
 		<ul class='nav nav-pills nav-stacked'>
 			<% @comics.each do |comic| %>
 			<% section = comic.sections.first %>
 			<% next if section.nil? %>
-			<li style='width: 700px;height: 90px' class='comic'>
-				<div class='content'>
-					<div class='cover'>
+			<li style='' class='comic'>
+				<div class='content row'>
+					<div class='cover span1'>
 						<%= link_to section do %>
 							<%= image_tag comic.cover_path, :height => '80px' %>
 						<% end -%>
 					</div>
-					<div class='info'>
+					<div class='info span6'>
+						<div class='row'>
+							<div class='span3'>
+
 						<%= link_to section, :class => 'name' do  %>
 							<%= comic.name %>
 							<span class='section-name'>(<%= section.name %>)</span>
 
-						<% end -%>
+							<% end -%>
+							</div>
+							<div class='span2 offset1'>
 						<span class='time'> <%= link_to timeformat(comic.updated_at), section %></span>
+						</div>
+						</div>
 					</div>
 					
 				</div>

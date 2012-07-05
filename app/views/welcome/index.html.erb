@@ -12,7 +12,7 @@
         box-shadow: 10px 10px 5px #888888;
       }
 
-      .recommand .cover{
+  /*    .recommand .cover{
         width: 150px;
         float: left;
       }
@@ -20,10 +20,11 @@
       .recommand .info {
         width: 400px;
         float: left;
-      }
+      }*/
 
       .recommand .name {
         font-size: 24px;
+        margin: 15px 0;
       }
 
       .recommand .intro {
@@ -39,19 +40,21 @@
         
         <div class="span9">
 
+
+
           <% if @recommand %>
-            <div class='well recommand' style='clear:both;height: 230px'>
+            <div class='well recommand' style=''>
               <h2 style='color:red'>本周推荐</h2>
               <hr style='border-color: silver'/>
 
-              <div>
-                <div class='cover'>
+              <div class='row'>
+                <div class='cover span2'>
                   <%= link_to @recommand do %>
                     <%= image_tag @recommand.cover_path %>
                   <% end -%>
                 </div>
 
-                <div class='info'>
+                <div class='info span6' style='margin-left: 0'>
                   <div class='name'>
                     <%= link_to @recommand.name, @recommand %>
                   </div>
