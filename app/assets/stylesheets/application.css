@@ -22,3 +22,7 @@ body, td, th {
 .title {
 	color: green;
 }
+
+.split {
+	border-color: #E6E6E6
+}
