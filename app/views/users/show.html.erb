@@ -31,7 +31,7 @@
                 <% end -%>
                 </a>
                 <h3 class='comic_name'>
-                   <%= link_to comic.name.truncate(8), comic %>
+                   <%= link_to comic.name.truncate(7), comic %>
                 </h3>
                  <div style='padding:2px'>
                   <%= link_to comic.sections.first.name, comic.sections.first, :style => 'color:#FA8258' %>

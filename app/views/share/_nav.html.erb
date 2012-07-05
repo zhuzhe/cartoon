@@ -31,7 +31,10 @@
             <ul class="nav">
               <li class="<%= is_active?(:controller => 'welcome', :action => 'index') %>"><a href="/">首页</a></li>
               <li class="<%= is_active?(:controller => 'comics', :action => 'hot') %>"><a href="/comics/hot">热门</a></li>
-              <li class="<%= is_active?(:controller => 'comics', :action => 'latest') %>"><a href="/comics/latest">更新</a></li>
+              <li class="<%= is_active?(:controller => 'comics', :action => 'latest') %>"><a href="/comics/latest">更新</a>
+              </li>
+              <li><a  style='color:red' href="http://www.icosplay.me" target='_blank'>Cosplay</a>
+              </li>
             </ul>
 
             <ul class="nav pull-right user_info">
