@@ -1,9 +1,9 @@
-  <div class="span3" >
+  <div class="span3" style='' >
     <div class="well sidebar-nav"  style='padding: 10px'>
     	<div>
             <%= form_tag search_comics_path, :class => 'form-search' do %>
                 <%= text_field_tag :key , '',:class => 'input-medium search-query' %>
-    		  <button type="submit" class="btn">搜索</button>
+    		  <button type="submit" class="btn" style='margin:5px'>搜索</button>
               <% end -%>
     	</div>
     	<div>
@@ -18,4 +18,3 @@
     	</div>
     </div><!--/.well -->
   </div><!--/span-->
-</div><!--/row-->
