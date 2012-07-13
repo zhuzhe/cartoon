@@ -62,4 +62,10 @@ namespace :spider do
 		puts 'done'
 	end
 
+	desc "crawl comics by letter"
+	task :crawl_comics_index_by_first_letter => :environment do
+		Spider::Imanhua.new.crawl_comics_index_by_first_letter
+		puts 'done'
+	end
+
 end

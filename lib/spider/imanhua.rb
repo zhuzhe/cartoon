@@ -16,7 +16,11 @@ module Spider
 
 		def get_page url
 			agent = create_agent
-			html = Iconv.iconv("UTF-8//IGNORE","GB2312//IGNORE", agent.get(url).body).to_s
+			begin
+				html = Iconv.iconv("UTF-8//IGNORE","GB2312//IGNORE", agent.get(url).body).to_s
+			rescue Exception => e
+				return nil
+			end
 			Nokogiri::HTML(html, nil, 'utf-8') 
 		end
 
@@ -62,6 +66,7 @@ module Spider
 
 		def crawl_comic_extra_info
 			Comic.find_each do |comic|
+				next unless comic.description.blank?
 				comic_home = get_page(comic.url)
 				cover = comic_home.search('.bookCover img').first
 				desc = comic_home.search('.intro').first
@@ -279,6 +284,41 @@ module Spider
 					end
 				end
 			end
+		end
+
+		def crawl_comics_index_by_first_letter
+			('A'..'Z').each do |letter|
+				pages = []
+				1.upto(20).each do |i|
+					if i == 1
+						first_page = get_page("http://imanhua.com/comic/#{letter}/")
+						if first_page
+							pages << first_page
+							next
+						else
+							break
+						end
+					end
+					other_page = get_page("http://imanhua.com/comic/#{letter}/index_p#{i}.html")
+					if other_page
+						pages << other_page
+					end
+				end
+
+				pages.each do |page|
+					page.search('.bookChrList li').each do |li|
+						cover_a = li.search('.cover a').first
+						next if cover_a.nil?
+						puts url = "#{ROOT}#{cover_a['href']}"
+						name = li.search('.intro h2 a').first.text
+						cover = li.search('.cover img').first['src']
+						next if Comic.find_by_url(url)
+						Comic.create(:name => name, :url => url, :cover => cover).cover
+					end
+				end
+			end
+			crawl_comic_extra_info
+			download_covers
 		end
 
 		private

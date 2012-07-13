@@ -67,7 +67,7 @@ class Admin::ComicsController < Admin::ApplicationController
   end
 
   def search
-    @comics = Comic.where("name like ?", "#{params[:key]}").paginate(:per_page => 20, :page => params[:page])
+    @comics = Comic.where("name like ?", "%#{params[:key]}%").paginate(:per_page => 20, :page => params[:page])
   end
 
   private
